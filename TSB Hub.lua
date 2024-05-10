@@ -132,7 +132,7 @@ hitplayers:AddDropdown({
     Default = "",
     Options = {"Table Flip", "Serious Punch", "Omni Directional Punch"},
     Callback = function(Value)
-        _G.funct1 = Value
+        _G.drphitpls = Value
     end
 })
 
@@ -144,7 +144,7 @@ hitplayers:AddToggle({
         hitplayerths = Value
 
         while hitplayerths do
-            if game.Players.LocalPlayer.Backpack:FindFirstChild("Serious Punch") and _G.funct1 == "Serious Punch" then
+            if game.Players.LocalPlayer.Backpack:FindFirstChild("Serious Punch") and _G.drphitpls == "Serious Punch" then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[playrte].Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2)
                 local args = {
                     [1] = {
@@ -154,7 +154,7 @@ hitplayers:AddToggle({
                 }
                 
                 game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args))
-            elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Table Flip") and _G.funct1 == "Table Flip" then
+            elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Table Flip") and _G.drphitpls == "Table Flip" then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[playrte].Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2)
                 local args = {
                     [1] = {
@@ -164,7 +164,7 @@ hitplayers:AddToggle({
                 }
                 
                 game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args))
-            elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Omni Directional Punch") and _G.funct1 == "Omni Directional Punch" then
+            elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Omni Directional Punch") and _G.drphitpls == "Omni Directional Punch" then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[playrte].Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2)
                 local args = {
                     [1] = {
@@ -237,6 +237,43 @@ Tab3:AddToggle({
             updateesp()
         task.wait()
         end
+    end
+})
+
+Tab4:AddToggle({
+    Name = "Anti Ragdoll",
+    Default = false,
+    Callback = function(Value)
+        _G.antiragdol = Value
+        local RunS = game:GetService("RunService")
+        local connection
+        connection = RunS.RenderStepped:Connect(function()
+            if _G.antiragdol == true then
+                if game.Players.LocalPlayer.Character:FindFirstChild("RagdollSim") then
+                    repeat task.wait() game.Players.LocalPlayer.Character.Torso.Anchored = true
+                    until not game.Players.LocalPlayer.Character:FindFirstChild("RagdollSim")
+                    game.Players.LocalPlayer.Character.Torso.Anchored = false
+                end
+            end
+        end)
+    end
+})
+
+Tab4:AddToggle({
+    Name = "Anti Freeze",
+    Default = false,
+    Callback = function(Value)
+        _G.antifreeze = Value
+        local RunS = game:GetService("RunService")
+        local connection
+        connection = RunS.RenderStepped:Connect(function()
+            if _G.antifreeze == true then
+                if game.Players.LocalPlayer.Character:FindFirstChild("Freeze") then
+                    game.Players.LocalPlayer.Character.Freeze:Destroy()
+                    game.Player.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+                end
+            end
+        end)
     end
 })
 
