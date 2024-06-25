@@ -1,3 +1,13 @@
+if not workspace:FindFirstChild("safeportkyk") then
+    local safeportkyk = Instance.new("Part", workspace)
+    safeportkyk.Name = "safeportkyk"
+    safeportkyk.Transparency = 0.25
+    safeportkyk.Size = Vector3.new(1000,10,1000)
+    safeportkyk.CFrame = CFrame.new(-775.410583, -145.237183, 137.471039, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+    safeportkyk.CanCollide = true
+    safeportkyk.Anchored = true
+end
+
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/KykyryzoB/Kykyryz0B-OrionLib/main/Orion%20Lib.lua'))()
 
 local Window = OrionLib:MakeWindow({Name = "Kykyryz0B Hub | The Strongest Battlegrounds", HidePremium = false, SaveConfig = false, ConfigFolder = "Voxul_ORIONLIB", IntroEnabled = true, IntroText = "Kykyryz0B Hub", IntroIcon = "rbxassetid://7733919105"})
@@ -67,6 +77,7 @@ local Killplayers = Tab2:AddSection({
 Killplayers:AddButton({
     Name = "Kill Player",
     Callback = function()
+        if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Flowing Water") then
         OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
         local args = {
             [1] = {
@@ -77,21 +88,80 @@ Killplayers:AddButton({
         
         game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args))
         wait(0.1)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Person].Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2)
-        wait(0.3)
-        local tweenService = game:GetService("TweenService")
-local tweenInfo = TweenInfo.new(1.65, Enum.EasingStyle.Linear)
-local targetCFrame = CFrame.new(-26.0132637, 826.888184, 812.366333, 0.993571818, -0.0388123319, 0.106342316, -1.08767601e-07, 0.939388454, 0.342854708, -0.113203734, -0.340650767, 0.933349848)
-local tween = tweenService:Create(
-    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
-    tweenInfo,
-    {CFrame = targetCFrame}
-)
-tween:Play()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Person].Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
+        wait(0.4)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-774.454834, -137.237228, 126.384216, 0.999490976, -5.29374811e-09, -0.0319025293, 7.50657225e-09, 1, 6.92422617e-08, 0.0319025293, -6.9446493e-08, 0.999490976)
         wait(1.73)
-        game.Players[Person].Character.HumanoidRootPart.CFrame = CFrame.new(-26.0132637, 826.888184, 812.366333, 0.993571818, -0.0388123319, 0.106342316, -1.08767601e-07, 0.939388454, 0.342854708, -0.113203734, -0.340650767, 0.933349848)
         wait(0.7)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
+    elseif game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Scatter") then
+        OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        local args = {
+            [1] = {
+                ["Goal"] = "Console Move",
+                ["Tool"] = game:GetService("Players").LocalPlayer.Backpack:WaitForChild("Scatter")
+            }
+        }
+        
+        game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args))
+        wait(0.1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Person].Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
+        wait(0.4)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-774.454834, -137.237228, 126.384216, 0.999490976, -5.29374811e-09, -0.0319025293, 7.50657225e-09, 1, 6.92422617e-08, 0.0319025293, -6.9446493e-08, 0.999490976)
+        wait(1.73)
+        wait(0.7)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
+    elseif game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Crushing Pull") then
+        OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        local args = {
+            [1] = {
+                ["Goal"] = "Console Move",
+                ["Tool"] = game:GetService("Players").LocalPlayer.Backpack:WaitForChild("Crushing Pull")
+            }
+        }
+        
+        game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args))
+        wait(0.1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Person].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,3)
+        wait(0.4)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-774.454834, -137.237228, 126.384216, 0.999490976, -5.29374811e-09, -0.0319025293, 7.50657225e-09, 1, 6.92422617e-08, 0.0319025293, -6.9446493e-08, 0.999490976)
+        wait(1.73)
+        wait(0.7)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
+    elseif game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Atmos Cleave") then
+        OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        local args = {
+            [1] = {
+                ["Goal"] = "Console Move",
+                ["Tool"] = game:GetService("Players").LocalPlayer.Backpack:WaitForChild("Atmos Cleave")
+            }
+        }
+        
+        game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args))
+        wait(0.1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Person].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,1)
+        wait(0.6)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-774.454834, -137.237228, 126.384216, 0.999490976, -5.29374811e-09, -0.0319025293, 7.50657225e-09, 1, 6.92422617e-08, 0.0319025293, -6.9446493e-08, 0.999490976)
+        wait(1.73)
+        wait(0.7)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
+    elseif game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Foul Ball") then
+        OGL = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        local args = {
+            [1] = {
+                ["Goal"] = "Console Move",
+                ["Tool"] = game:GetService("Players").LocalPlayer.Backpack:WaitForChild("Foul Ball")
+            }
+        }
+        
+        game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args))
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Person].Character.HumanoidRootPart.CFrame * CFrame.new(0,0,16)
+        wait(0.75)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-774.454834, -137.237228, 126.384216, 0.999490976, -5.29374811e-09, -0.0319025293, 7.50657225e-09, 1, 6.92422617e-08, 0.0319025293, -6.9446493e-08, 0.999490976)
+        wait(1.73)
+        wait(0.7)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGL
+    end
     end
 })
 
@@ -249,10 +319,9 @@ Tab4:AddToggle({
         local connection
         connection = RunS.RenderStepped:Connect(function()
             if _G.antiragdol == true then
-                if game.Players.LocalPlayer.Character:FindFirstChild("RagdollSim") then
-                    repeat task.wait() game.Players.LocalPlayer.Character.Torso.Anchored = true
-                    until not game.Players.LocalPlayer.Character:FindFirstChild("RagdollSim")
-                    game.Players.LocalPlayer.Character.Torso.Anchored = false
+                if game.Players.LocalPlayer.Character:FindFirstChild("RagdollSim") and _G.antiragdol == true then
+                    game.Players.LocalPlayer.Character.RagdollSim:Destroy()
+                    game.Players.LocalPlayer.Character.Ragdoll:Destroy()
                 end
             end
         end)
@@ -268,9 +337,99 @@ Tab4:AddToggle({
         local connection
         connection = RunS.RenderStepped:Connect(function()
             if _G.antifreeze == true then
-                if game.Players.LocalPlayer.Character:FindFirstChild("Freeze") then
+                if game.Players.LocalPlayer.Character:FindFirstChild("Freeze") and _G.antifreeze == true then
                     game.Players.LocalPlayer.Character.Freeze:Destroy()
-                    game.Player.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+                end
+            end
+        end)
+    end
+})
+
+Tab4:AddToggle({
+    Name = "Anti Slowed",
+    Default = false,
+    Callback = function(Value)
+        _G.antislowed = Value
+        local RunS = game:GetService("RunService")
+        local connection
+        connection = RunS.RenderStepped:Connect(function()
+            if _G.antislowed == true then
+                if game.Players.LocalPlayer.Character:FindFirstChild("Slowed") and _G.antislowed == true then
+                    game.Players.LocalPlayer.Character.Slowed:Destroy()
+                end
+            end
+        end)
+    end
+})
+
+Tab4:AddToggle({
+    Name = "Anti StopRunning",
+    Default = false,
+    Callback = function(Value)
+        _G.antiStopRunning = Value
+        local RunS = game:GetService("RunService")
+        local connection
+        connection = RunS.RenderStepped:Connect(function()
+            if _G.antiStopRunning == true then
+                if game.Players.LocalPlayer.Character:FindFirstChild("StopRunning") and _G.antiStopRunning == true then
+                    game.Players.LocalPlayer.Character.StopRunning:Destroy()
+                end
+            end
+        end)
+    end
+})
+
+Tab4:AddToggle({
+    Name = "Anti NoJump",
+    Default = false,
+    Callback = function(Value)
+        _G.antiNoJump = Value
+        local RunS = game:GetService("RunService")
+        local connection
+        connection = RunS.RenderStepped:Connect(function()
+            if _G.antiNoJump == true then
+                if game.Players.LocalPlayer.Character:FindFirstChild("NoJump") and _G.antiNoJump == true then
+                    game.Players.LocalPlayer.Character.NoJump:Destroy()
+                end
+            end
+        end)
+    end
+})
+
+Tab4:AddToggle({
+    Name = "Anti NoBlock",
+    Default = false,
+    Callback = function(Value)
+        _G.antiNoBlock = Value
+        local RunS = game:GetService("RunService")
+        local connection
+        connection = RunS.RenderStepped:Connect(function()
+            if _G.antiNoBlock == true then
+                if game.Players.LocalPlayer.Character:FindFirstChild("NoBlock") and _G.antiNoBlock== true then
+                    game.Players.LocalPlayer.Character.NoBlock:Destroy()
+                end
+            end
+        end)
+    end
+})
+
+
+
+Tab4:AddToggle({
+    Name = "Anti Counter",
+    Default = false,
+    Callback = function(Value)
+        _G.anticounter = Value
+        local RunS = game:GetService("RunService")
+        local connection
+        connection = RunS.RenderStepped:Connect(function()
+            if _G.anticounter == true then
+                for i,v in pairs(game.Players:GetChildren()) do
+                    if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("Counter") and _G.anticounter == true then
+                        repeat task.wait() v.Character.Parent = game.LogService
+                        until not v.Character:FindFirstChild("Counter")
+                        v.Character.Parent = game.Workspace.Live
+                    end
                 end
             end
         end)
@@ -282,7 +441,7 @@ Tab5:AddSlider({
     Min = 20,
     Max = 1000,
     Default = 20,
-    Color = Color3.fromRGB(255,255,255),
+    Color = Color3.fromRGB(0,0,255),
     Increment = 1,
     ValueName = "WalkSpeed",
     Callback = function(Value)
@@ -310,7 +469,7 @@ Tab5:AddSlider({
     Min = 50,
     Max = 1000,
     Default = 50,
-    Color = Color3.fromRGB(255,255,255),
+    Color = Color3.fromRGB(238,201,0),
     Increment = 1,
     ValueName = "JumpPower",
     Callback = function(Value)
@@ -338,7 +497,7 @@ Tab5:AddSlider({
     Min = 0,
     Max = 100,
     Default = 0,
-    Color = Color3.fromRGB(255,255,255),
+    Color = Color3.fromRGB(139,0,0),
     Increment = 1,
     ValueName = "Hip Height",
     Callback = function(Value)
@@ -354,7 +513,7 @@ Tab5:AddToggle({
         KeepHipHeight = Value
            while KeepHipHeight do
               if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") ~= nil and game.Players.LocalPlayer.Character.Humanoid.HipHeight ~= HipHeight then
-                  game.Players.LocalPlayer.Character.Humanoid.HipHeight  = HipHeight
+                  game.Players.LocalPlayer.Character.Humanoid.HipHeight = HipHeight
               end
 task.wait()
          end
@@ -366,7 +525,7 @@ Tab5:AddSlider({
     Min = 0,
     Max = 600,
     Default = 196,
-    Color = Color3.fromRGB(255,255,255),
+    Color = Color3.fromRGB(147,112,219),
     Increment = 1,
     ValueName = "Gravity",
     Callback = function(Value)
