@@ -734,7 +734,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
     end
     if _G.aimbot == true then
         local function CIXXD_fake_script() -- TextButton_2.LocalScript 
-          
+      
             local Cam = workspace.CurrentCamera
             local localPlayer = game.Players.LocalPlayer
           
@@ -759,14 +759,13 @@ game:GetService("RunService").RenderStepped:Connect(function()
               return nearest
             end
           
-            game:GetService("RunService").RenderStepped:Connect(function()
+            
               local closest = getClosestPlayerToLocalPlayer("Head")
-              if closest and closest.Character:FindFirstChild("Head") then
+              if _G.aimbot == true and closest and closest.Character:FindFirstChild("Head") then
                 lookAt(Cam.CFrame.p, closest.Character:FindFirstChild("Head").Position)
               end
-            end)
           end
           
-          CIXXD_fake_script()      
-    end
+          coroutine.wrap(CIXXD_fake_script)()
+        end
 end)
