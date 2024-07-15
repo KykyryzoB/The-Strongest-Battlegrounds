@@ -193,7 +193,7 @@ Killplayers:AddTextbox({
             end
             if targetPlayer then
             Person = targetPlayer.Name
-            OrionLib:MakeNotification({Name = "Notification",Content = "Found Player "..Person.."",Image = "rbxassetid://7733658504",Time = 5})
+            OrionLib:MakeNotification({Name = "Notification",Content = "Found Player "..Person.."",Image = "rbxassetid://7733964719",Time = 5})
             else
             OrionLib:MakeNotification({Name = "Error",Content = "Can't Find Player",Image = "rbxassetid://7733658504",Time = 5})
             end
@@ -233,7 +233,7 @@ targetplayer:AddTextbox({
             end
             if targetPlayer then
             tarplr = targetPlayer.Name
-            OrionLib:MakeNotification({Name = "Notification",Content = "Found Player "..tarplr.."",Image = "rbxassetid://7733658504",Time = 5})
+            OrionLib:MakeNotification({Name = "Notification",Content = "Found Player "..tarplr.."",Image = "rbxassetid://7733964719",Time = 5})
             else
             OrionLib:MakeNotification({Name = "Error",Content = "Can't find player",Image = "rbxassetid://7733658504",Time = 5})
             end
@@ -250,6 +250,14 @@ functions1:AddToggle({
     Default = false,
     Callback = function(Value)
         _G.autoparry = Value
+    end
+})
+
+functions1:AddToggle({
+    Name = "AimBot",
+    Default = false,
+    Callback = function(Value)
+        _G.aimbot = Value
     end
 })
 
@@ -313,7 +321,7 @@ local teleportsw = Tab3:AddSection({
 teleportsw:AddDropdown({
     Name = "Teleport",
     Default = "Maр",
-    Options = {"Map", "Mountains", "SafePort", "Secret Room 1", "Secret Room 2", "Set OGL", "TP to OGL"},
+    Options = {"Map", "Mountains", "SafePort", "Secret Room 1", "Secret Room 2"},
     Callback = function(Value)
         if Value == "Map" then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(63.4928513, 440.505829, -92.9229507, 0.971539259, 1.46834012e-08, 0.236878619, 1.04984466e-08, 1, -1.05045586e-07, -0.236878619, 1.04542771e-07, 0.971539259)
@@ -325,11 +333,22 @@ teleportsw:AddDropdown({
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-62, 29, 20338)
         elseif Value == "Secret Room 2" then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1068, 133, 23015)
-        elseif Value == "Set OGL" then
-            local OGLTP = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        elseif Value == "Tp to OGL" then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGLTP
         end
+    end
+})
+
+teleportsw:AddButton({
+    Name = "Set OGL",
+    Callback = function()
+        OGLTP = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        OrionLib:MakeNotification({Name = "Notification",Content = "OGL Set to Position "..game.Players.LocalPlayer.Character.HumanoidRootPart.Position.." .",Image = "rbxassetid://7733964719",Time = 5})
+    end
+})
+
+teleportsw:AddButton({
+    Name = "Tp OGL",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = OGLTP
     end
 })
 
@@ -496,6 +515,22 @@ Tab4:AddToggle({
     end
 })
 
+Tab4:AddToggle({
+    Name = "Anti HunterCounter",
+    Default = false,
+    Callback = function(Value)
+        _G.antiHunterCounter = Value
+    end
+})
+
+Tab4:AddToggle({
+    Name = "Anti AtomicCounter",
+    Default = false,
+    Callback = function(Value)
+        _G.andtiAtomicounter = Value
+    end
+})
+
 Tab5:AddSlider({
     Name = "WalkSpeed",
     Min = 20,
@@ -555,7 +590,7 @@ task.wait()
 Tab5:AddSlider({
     Name = "Hip Height",
     Min = 0,
-    Max = 100,
+    Max = 1000,
     Default = 0,
     Color = Color3.fromRGB(139,0,0),
     Increment = 1,
@@ -655,6 +690,24 @@ game:GetService("RunService").RenderStepped:Connect(function()
             end
         end
     end
+    if _G.antiHunterCounter == true then
+        for i,v in pairs(game.Players:GetChildren()) do
+            if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("HunterCounter") and _G.antiHunterCounter == true then
+                repeat task.wait() v.Character.Parent = game.LogService
+                until not v.Character:FindFirstChild("HunterCounter")
+                v.Character.Parent = game.Workspace.Live
+            end
+        end
+    end
+    if _G.andtiAtomicounter == true then
+        for i,v in pairs(game.Players:GetChildren()) do
+            if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("AtomicCounter") and _G.andtiAtomicounter == true then
+                repeat task.wait() v.Character.Parent = game.LogService
+                until not v.Character:FindFirstChild("AtomicCounter")
+                v.Character.Parent = game.Workspace.Live
+            end
+        end
+    end
     if _G.autoparry == true then
         for i,v in pairs(game.Players:GetChildren()) do
             if v ~= game.Players.LocalPlayer and v.Character then
@@ -678,5 +731,42 @@ game:GetService("RunService").RenderStepped:Connect(function()
     end
     if _G.targetplayer1 == true then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[tarplr].Character.HumanoidRootPart.CFrame * CFrame.new(0,1,2.65)
+    end
+    if _G.aimbot == true then
+        local function CIXXD_fake_script() -- TextButton_2.LocalScript 
+          
+            local Cam = workspace.CurrentCamera
+            local localPlayer = game.Players.LocalPlayer
+          
+            local hotkey = true
+          
+            function lookAt(target, eye)
+              Cam.CFrame = CFrame.new(target, eye)
+            end
+          
+            function getClosestPlayerToLocalPlayer(trg_part)
+              local nearest = nil
+              local last = math.huge
+              for _, v in pairs(game.Players:GetPlayers()) do
+                if v ~= localPlayer and v.Character and v.Character:FindFirstChild(trg_part) then
+                  local distance = (localPlayer.Character[trg_part].Position - v.Character[trg_part].Position).magnitude
+                  if distance < last and hotkey then
+                    last = distance
+                    nearest = v
+                  end
+                end
+              end
+              return nearest
+            end
+          
+            game:GetService("RunService").RenderStepped:Connect(function()
+              local closest = getClosestPlayerToLocalPlayer("Head")
+              if closest and closest.Character:FindFirstChild("Head") then
+                lookAt(Cam.CFrame.p, closest.Character:FindFirstChild("Head").Position)
+              end
+            end)
+          end
+          
+          CIXXD_fake_script()      
     end
 end)
